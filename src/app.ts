@@ -1,6 +1,8 @@
 import express,{Request, Response, json} from "express"
+import "express-async-errors"
 import httpStatus from "http-status"
 import moviesRouter from "@/routes/movies-router"
+import { errorHandling } from "./middlewares/errro-handling"
 
 
 const app = express()
@@ -12,6 +14,7 @@ app.get("/health", (req:Request,res:Response) =>{
 })
 
 app.use(moviesRouter)
+app.use(errorHandling)
 
 const PORT : number = 5000
 
